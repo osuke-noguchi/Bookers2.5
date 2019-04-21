@@ -1,0 +1,30 @@
+<%= render "layouts/list" %>
+<div class="container">
+  <h2>User info</h2>
+      <%= form_for(@user) do |f| %>
+      <% if @user.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+              <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                  <% end %>
+              </ul>
+          </div>
+          <% end %>
+       <h4>Name  <%= f.text_field :name, class: "name" %></h4>
+         <h4>Image</h4>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%><br>
+          <%= f.attachment_field :profile_image, class: "image_user" %><br>
+           <h4>Introduction  <%= f.text_area :introduction, class: "introduction" %></h4>
+             <%= f.submit 'Update User' %>
+       <% end %>
+</div>
+<div class="containar">
+  <div class="row">
+   <div class="col-md-9">
+    </div>
+    <div class="col-md-3">
+      <p>CopyRight Infratop.inc</p>
+  </div>
+</div>
+</div>

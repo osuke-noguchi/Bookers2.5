@@ -1,0 +1,41 @@
+
+<%= render "layouts/list" %>
+<div class="container">
+  <% if flash[:success] %>
+      <div class="flash">
+        <%= flash[:success] %>
+      </div>
+    <% end %>
+ <div class="row">
+  <div class="col-md-3">
+   <%= render "users/list", user: @book.user %>
+   <%= render "books/list", book: @bookn %>
+ </div>
+     <div class="col-md-9">
+　　<h2>Book detail</h2>
+     <table class="table">
+      <thead>
+      <tr>
+        <th colspan="5"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+
+       <td><%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %><br>
+        <%= link_to @user.name, user_path(@book.user), class: "user_#{@user.id}" %>
+       </td>
+       <td><%= link_to @book.title, book_path(@book.id),class: "books" %></td>
+       <td><%= @book.book_body %></td>
+       <% if @book.user == current_user %>
+       <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success btn-sm edit_book_#{@book.id}" %>
+       </td>
+       <td><%= link_to "Destroy", book_path(@book.id), class: "btn btn-danger btn-sm destroy_book_#{@book.id}", method: :delete, data:{confirm:"本当に消しますか?"} %></td>
+       <% end %>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+ </div>
+</div>
